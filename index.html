@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="What Makes Interaction Trajectories Effective for Training Terminal Agents?">
+  <meta name="keywords" content="terminal agent, code agent, LLM, distillation, verification, EGS, Terminal-Lego">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terminal-Lego: Scaling Real-World Terminal Agents via Distilled Verification Paradigms</title>
+
+  <meta property="og:title" content="Terminal-Lego">
+  <meta property="og:description" content="An automated pipeline distilling 15K+ executable tasks from Stack Overflow. We reveal that Environment-Grounded Supervision matters more than teacher performance for training terminal agents.">
+  <meta property="og:image" content="./static/figures/intro-1.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧱</text></svg>">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Terminal-Lego</h1>
+          <h2 class="title is-3 publication-title" style="margin-top: -0.5rem;">What Makes Interaction Trajectories Effective for Training Terminal Agents?</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+          <div class="is-size-5 publication-authors" style="margin-top: 0.25rem;">
+            <span class="author-block">NeurIPS 2026 Submission</span>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-database"></i></span><span>Dataset</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-robot"></i></span><span>Models</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Intro Figure + Key Stats -->
+<section class="section" id="intro" style="padding-top: 1rem; padding-bottom: 2rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-10">
+        <figure class="image">
+          <img src="./static/figures/intro-1.png" alt="The Pedagogical Paradox">
+        </figure>
+        <p class="is-italic has-text-grey is-size-7" style="margin-top: 0.75rem;">
+          The Pedagogical Paradox: While Claude Opus 4.6 achieves the highest standalone score, its trajectories produce weaker students. DeepSeek-V3.2, with lower standalone performance, emerges as the most effective teacher through Environment-Grounded Supervision.
+        </p>
+      </div>
+    </div>
+    <div class="columns is-centered" style="margin-top: 1.5rem;">
+      <div class="column is-10">
+        <div class="columns">
+          <div class="column">
+            <div class="box has-text-centered highlight-box">
+              <p class="title is-2 highlight-number">15K+</p>
+              <p class="subtitle is-6">Executable Tasks<br><span class="is-size-7">90+ domains</span></p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="box has-text-centered highlight-box">
+              <p class="title is-2 highlight-number">24.3%</p>
+              <p class="subtitle is-6">TB 2.0 (32B)<br><span class="is-size-7">from 3.4% base</span></p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="box has-text-centered highlight-box">
+              <p class="title is-2 highlight-number">30x</p>
+              <p class="subtitle is-6">Less Data<br><span class="is-size-7">vs. prior SOTA</span></p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="box has-text-centered highlight-box">
+              <p class="title is-2 highlight-number">7x</p>
+              <p class="subtitle is-6">Improvement<br><span class="is-size-7">over backbone</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section" style="background-color: #fafafa;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered"><strong>Abstract</strong></h2>
+        <div class="content has-text-justified">
+          <p>
+            Stronger code agents are commonly assumed to be superior teachers for post-training, yet this assumption remains poorly disentangled from task difficulty, harness design, and student capacity. We investigate this pedagogical link using <span class="takeaway">Terminal-Lego</span>, a scalable pipeline that transforms multi-domain real-world issues into environment-verified agentic tasks.
+          </p>
+          <p>
+            Surprisingly, standalone performance does not dictate teaching efficacy: while Claude Opus 4.6 achieves higher scores on Terminal-Bench 2.0, students fine-tuned on trajectories from DeepSeek-V3.2, a lower-scoring agent, exhibit significantly stronger generalization. We attribute this "pedagogical paradox" to <span class="takeaway">Environment-Grounded Supervision (EGS)</span>: trajectories that explicitly expose inspect-act-verify behaviors allow students to internalize robust problem-solving routines rather than fragile action sequences.
+          </p>
+          <p>
+            Scaling analysis reveals exceptional data efficiency: with only 15.3k Terminal-Lego trajectories, Qwen3-32B achieves a 24.3% score on Terminal-Bench 2.0, rivaling previous SOTA performance established with over <span class="takeaway">30x the data volume</span>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teacher Selection: The Pedagogical Paradox -->
+<section class="section" id="paradox">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered"><strong>The Pedagogical Paradox</strong></h2>
+        <div class="content has-text-justified">
+          <p>
+            Under a matched-task setting with 8.1K trajectories per teacher, we find a striking result: <span class="takeaway">the strongest standalone agent (Claude Opus 4.6) produces the weakest students, while the weakest agent (DeepSeek-V3.2) produces the strongest students.</span>
+          </p>
+        </div>
+        <div class="table-container">
+          <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Teacher Model</th>
+                <th class="has-text-centered">TB 2.0</th>
+                <th class="has-text-centered">Avg. Turns</th>
+                <th class="has-text-centered">Qwen3-8B</th>
+                <th class="has-text-centered">Qwen3-32B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Claude Opus 4.6</td><td class="has-text-centered">69.4</td><td class="has-text-centered">3.8</td><td class="has-text-centered">5.6%</td><td class="has-text-centered">15.5%</td></tr>
+              <tr><td>Qwen3.5-Plus</td><td class="has-text-centered">52.5</td><td class="has-text-centered">6.7</td><td class="has-text-centered">8.6%</td><td class="has-text-centered">17.2%</td></tr>
+              <tr><td>GLM-5</td><td class="has-text-centered">56.2</td><td class="has-text-centered">5.4</td><td class="has-text-centered">8.6%</td><td class="has-text-centered">19.5%</td></tr>
+              <tr style="background-color: #f0f7ff; font-weight: 600;"><td>DeepSeek-V3.2</td><td class="has-text-centered">39.3</td><td class="has-text-centered">7.3</td><td class="has-text-centered"><strong>10.5%</strong></td><td class="has-text-centered"><strong>20.6%</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="is-size-7 has-text-grey" style="margin-top: 0.5rem;">All teachers use 8.1K task-aligned trajectories. Student performance reported as average pass@1 on Terminal-Bench 2.0 across three trials.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EGS & TOR -->
+<section class="section" id="egs" style="background-color: #fafafa;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered"><strong>Environment-Grounded Supervision (EGS)</strong></h2>
+        <div class="content has-text-justified">
+          <p>
+            We propose that teachable trajectories are characterized by an explicit <span class="takeaway">inspect-act-verify</span> loop. We define the <span class="takeaway">Targeted Observation Ratio (TOR)</span> to measure the fraction of actions supported by path-aligned prior observations.
+          </p>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+              <p><strong>Observation Masking</strong></p>
+              <p class="is-size-7">Masking observation turns in DeepSeek-V3.2 trajectories drops Qwen3-32B from <strong>20.6%</strong> to <strong>13.8%</strong>, proving observation supervision is essential.</p>
+            </div>
+          </div>
+          <div class="column is-6">
+            <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+              <p><strong>High-TOR vs Low-TOR</strong></p>
+              <p class="is-size-7">High-TOR trajectories produce <strong>14.6%</strong> vs <strong>11.8%</strong> for low-TOR on Qwen3-32B, confirming TOR predicts data utility.</p>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+              <p><strong>Failed Trajectories Still Teach</strong></p>
+              <p class="is-size-7">2.5K failed DeepSeek-V3.2 trajectories train a 32B student (<strong>16.1%</strong>) that outperforms 8.1K passed Claude trajectories (<strong>15.5%</strong>).</p>
+            </div>
+          </div>
+          <div class="column is-6">
+            <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+              <p><strong>TOR Across Teachers</strong></p>
+              <p class="is-size-7">DeepSeek-V3.2: <strong>13.4%</strong> TOR &nbsp;|&nbsp; GLM-5: 7.3% &nbsp;|&nbsp; Qwen3.5-Plus: 6.5% &nbsp;|&nbsp; Claude: 2.5%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pipeline -->
+<section class="section" id="pipeline">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered"><strong>Terminal-Lego Pipeline</strong></h2>
+        <div class="content has-text-justified">
+          <p>
+            Terminal-Lego converts real StackOverflow issues into Docker-verified agentic terminal tasks through three stages: source collection, cascaded LLM task construction, and Docker round-trip verification.
+          </p>
+        </div>
+        <figure class="image">
+          <img src="./static/figures/pipeline-1.png" alt="Terminal-Lego Pipeline">
+        </figure>
+        <p class="is-italic has-text-grey is-size-7 has-text-centered" style="margin-top: 0.75rem;">
+          Pipeline overview: StackOverflow issues are filtered, converted through cascaded generation, and retained after Docker round-trip verification. The dataset spans 90+ technical domains with 15K+ verified tasks.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Results -->
+<section class="section" id="results" style="background-color: #fafafa;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered"><strong>Terminal-Bench 2.0 Results</strong></h2>
+        <p class="is-size-6 has-text-grey has-text-centered" style="margin-bottom: 1rem;">Using only 15K trajectories, Terminal-Lego achieves competitive performance with models trained on 30x more data.</p>
+        <div class="table-container">
+          <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th class="has-text-centered">Size</th>
+                <th class="has-text-centered">Post-Training Data</th>
+                <th class="has-text-centered">Scaffold</th>
+                <th class="has-text-centered">TB 2.0</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="5" style="font-weight:600; background:#f9f9f9;"><em>Official Leaderboard References</em></td></tr>
+              <tr><td>GPT-5.5</td><td class="has-text-centered">--</td><td class="has-text-centered">--</td><td class="has-text-centered">Codex CLI</td><td class="has-text-centered">82.0</td></tr>
+              <tr><td>Claude Opus 4.6</td><td class="has-text-centered">--</td><td class="has-text-centered">--</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">62.9</td></tr>
+              <tr><td>GLM-5</td><td class="has-text-centered">744B</td><td class="has-text-centered">--</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">52.4</td></tr>
+              <tr><td>DeepSeek-V3.2</td><td class="has-text-centered">685B</td><td class="has-text-centered">--</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">39.6</td></tr>
+              <tr><td>GPT-5-Mini</td><td class="has-text-centered">--</td><td class="has-text-centered">--</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">24.0</td></tr>
+              <tr><td colspan="5" style="font-weight:600; background:#f9f9f9;"><em>Post-Trained Student Models</em></td></tr>
+              <tr><td>Qwen3-8B (backbone)</td><td class="has-text-centered">8B</td><td class="has-text-centered">--</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">2.5</td></tr>
+              <tr><td>TerminalTraj-Qwen2.5-Coder-7B</td><td class="has-text-centered">7B</td><td class="has-text-centered">50.7K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">10.1</td></tr>
+              <tr><td>Nemotron-Terminal-Qwen3-8B</td><td class="has-text-centered">8B</td><td class="has-text-centered">490.5K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered"><strong>13.0</strong></td></tr>
+              <tr style="background-color: #f0f7ff; font-weight: 600;"><td>Terminal-Lego-Qwen3-8B</td><td class="has-text-centered">8B</td><td class="has-text-centered">15.3K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">11.8 <span style="color:#3273dc;">(+9.3)</span></td></tr>
+              <tr><td>Qwen3-32B (backbone)</td><td class="has-text-centered">32B</td><td class="has-text-centered">--</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">3.4</td></tr>
+              <tr><td>TerminalTraj-Qwen2.5-Coder-32B</td><td class="has-text-centered">32B</td><td class="has-text-centered">50.7K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">22.0</td></tr>
+              <tr><td>Nemotron-Terminal-Qwen3-32B</td><td class="has-text-centered">32B</td><td class="has-text-centered">490.5K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered"><strong>27.4</strong></td></tr>
+              <tr style="background-color: #f0f7ff; font-weight: 600;"><td>Terminal-Lego-Qwen3-32B</td><td class="has-text-centered">32B</td><td class="has-text-centered">15.3K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">24.3 <span style="color:#3273dc;">(+20.9)</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Takeaways -->
+<section class="section" id="takeaways">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered"><strong>Key Takeaways</strong></h2>
+        <div class="content">
+          <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+            <p><strong>Prioritize Paradigm over Performance</strong> — When selecting teacher models for distillation, prioritize those with rigorous inspect-act-verify habits (high TOR) rather than those with the highest benchmark scores.</p>
+          </div>
+          <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+            <p><strong>Observation as the Core Reasoning Primitive</strong> — Environment-grounded observation is not merely a safety check, but the fundamental bridge between perception and action that students must learn.</p>
+          </div>
+          <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+            <p><strong>The Value of Methodological Failure</strong> — Sufficiently capable students can extract reusable interaction patterns from imperfect trajectories, decoupling process quality from outcome.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX" style="background-color: #fafafa;">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered"><strong>Citation</strong></h2>
+    <pre><code>@article{anonymous2026terminallego,
+  title={What Makes Interaction Trajectories Effective for Training Terminal Agents?},
+  author={Anonymous},
+  journal={NeurIPS 2026 Submission},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> adopted from <a href="https://nerfies.github.io" target="_blank">Nerfies</a>.
+            Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="./static/js/index.js"></script>
+</body>
+</html>
