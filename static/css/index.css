@@ -174,3 +174,20 @@ figure.image img {
   opacity: 1 !important;
   transform: none !important;
 }
+
+/* Domain buttons */
+.domain-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.domain-btn {
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem !important;
+}
+
+.domain-tags-display .tag {
+  margin: 0.2rem;
+}
+
