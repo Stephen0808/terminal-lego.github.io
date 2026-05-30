@@ -62,7 +62,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://github.com/SWE-Lego/terminal-lego" class="external-link button is-normal is-rounded is-dark" target="_blank">
                   <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
                 </a>
               </span>
@@ -92,9 +92,14 @@
         <figure class="image">
           <img src="./static/figures/intro_sq-1.png" alt="The Pedagogical Paradox" style="max-width: 80%; margin: 0 auto;">
         </figure>
-        <p class="is-italic has-text-grey is-size-6" style="margin-top: 0.75rem;">
-          The Pedagogical Paradox: While Claude Opus 4.6 achieves the highest standalone score, its trajectories produce weaker students. DeepSeek-V3.2 emerges as the most effective teacher through Environment-Grounded Supervision with the highest Targeted Observation Ratio (13.4%).
-        </p>
+        <div class="content has-text-left" style="margin-top: 0.75rem; padding: 0.75rem 0.9rem 0.65rem; background-color: #fafafa; border-radius: 8px;">
+          <p class="is-size-6 has-text-black" style="margin-bottom: 0.4rem;">
+            <strong style="color: #d4a017;"><span class="icon is-small" style="color: #d4a017;"><i class="fas fa-scale-unbalanced-flip"></i></span>&nbsp;The Pedagogical Paradox:</strong> Claude Opus 4.6 achieves the highest standalone score, yet its trajectories produce weaker students.
+          </p>
+          <p class="is-size-6 has-text-black" style="margin-bottom: 0;">
+            <strong style="color: #d4a017;"><span class="icon is-small" style="color: #d4a017;"><i class="fas fa-eye"></i></span>&nbsp;Observation Support:</strong> DeepSeek-V3.2 emerges as the most effective teacher through Environment-Grounded Supervision, with the highest Targeted Observation Ratio (13.4%).
+          </p>
+        </div>
       </div>
     </div>
     <div class="columns is-centered" style="margin-top: 1.5rem;">
@@ -114,8 +119,8 @@
           </div>
           <div class="column">
             <div class="box has-text-centered highlight-box">
-              <p class="title is-2 highlight-number">30x</p>
-              <p class="subtitle is-6">Less Data<br><span class="is-size-7">vs. prior SOTA</span></p>
+              <p class="title is-2 highlight-number">3</p>
+              <p class="subtitle is-6">Key Stages<br><span class="is-size-7">for constructing tasks</span></p>
             </div>
           </div>
           <div class="column">
@@ -178,7 +183,7 @@
               <tr><td>Claude Opus 4.6</td><td class="has-text-centered">69.4</td><td class="has-text-centered">3.8</td><td class="has-text-centered">5.6%</td><td class="has-text-centered">15.5%</td></tr>
               <tr><td>Qwen3.5-Plus</td><td class="has-text-centered">52.5</td><td class="has-text-centered">6.7</td><td class="has-text-centered">8.6%</td><td class="has-text-centered">17.2%</td></tr>
               <tr><td>GLM-5</td><td class="has-text-centered">56.2</td><td class="has-text-centered">5.4</td><td class="has-text-centered">8.6%</td><td class="has-text-centered">19.5%</td></tr>
-              <tr style="background-color: #f0f7ff; font-weight: 600;"><td>DeepSeek-V3.2</td><td class="has-text-centered">39.3</td><td class="has-text-centered">7.3</td><td class="has-text-centered"><strong>10.5%</strong></td><td class="has-text-centered"><strong>20.6%</strong></td></tr>
+              <tr style="background-color: #fff9e8; font-weight: 600;"><td>DeepSeek-V3.2</td><td class="has-text-centered">39.3</td><td class="has-text-centered">7.3</td><td class="has-text-centered"><strong>10.5%</strong></td><td class="has-text-centered"><strong>20.6%</strong></td></tr>
             </tbody>
           </table>
         </div>
@@ -201,13 +206,13 @@
         </div>
         <div class="columns">
           <div class="column is-6">
-            <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+            <div class="box" style="background-color: #fff9e8; border-left: 4px solid #d4a017;">
               <p><strong>Observation Masking</strong></p>
               <p class="is-size-7">Masking observation turns in DeepSeek-V3.2 trajectories drops Qwen3-32B from <strong>20.6%</strong> to <strong>13.8%</strong>, proving observation supervision is essential.</p>
             </div>
           </div>
           <div class="column is-6">
-            <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+            <div class="box" style="background-color: #fff9e8; border-left: 4px solid #d4a017;">
               <p><strong>High-TOR vs Low-TOR</strong></p>
               <p class="is-size-7">High-TOR trajectories produce <strong>14.6%</strong> vs <strong>11.8%</strong> for low-TOR on Qwen3-32B, confirming TOR predicts data utility.</p>
             </div>
@@ -215,17 +220,39 @@
         </div>
         <div class="columns">
           <div class="column is-6">
-            <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+            <div class="box" style="background-color: #fff9e8; border-left: 4px solid #d4a017;">
               <p><strong>Failed Trajectories Still Teach</strong></p>
               <p class="is-size-7">2.5K failed DeepSeek-V3.2 trajectories train a 32B student (<strong>16.1%</strong>) that outperforms 8.1K passed Claude trajectories (<strong>15.5%</strong>).</p>
             </div>
           </div>
           <div class="column is-6">
-            <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+            <div class="box" style="background-color: #fff9e8; border-left: 4px solid #d4a017;">
               <p><strong>TOR Across Teachers</strong></p>
               <p class="is-size-7">DeepSeek-V3.2: <strong>13.4%</strong> TOR &nbsp;|&nbsp; GLM-5: 7.3% &nbsp;|&nbsp; Qwen3.5-Plus: 6.5% &nbsp;|&nbsp; Claude: 2.5%</p>
             </div>
           </div>
+        </div>
+        <div class="box" style="background-color: #fffdf5; border-left: 4px solid #d4a017; margin-top: 0.5rem;">
+          <p class="is-size-6" style="margin-bottom: 0.5rem;"><strong>Activating Observation Behavior</strong></p>
+          <p class="is-size-7" style="margin-bottom: 0.6rem;">
+            To further examine observation behavior, we inject two system-level instructions that encourage environment-grounded interaction before any write actions:
+          </p>
+          <div class="box" style="background-color: #ffffff; border: 1px solid #e6e6e6; margin-bottom: 0.7rem;">
+            <p class="is-size-7" style="font-family: monospace; margin-bottom: 0.3rem;">- Inspect the environment and relevant files first, as thoroughly as possible.</p>
+            <p class="is-size-7" style="font-family: monospace; margin-bottom: 0;">- Only begin write/create/modify actions after you have fully verified the current file contents and directory structure.</p>
+          </div>
+          <ul class="is-size-7" style="margin-left: 1.1rem;">
+            <li>Using the same teacher (Claude Opus 4.6) and the same 8.1K instances, TOR increases from <strong>2.5%</strong> to <strong>6.6%</strong>, and 32B student performance rises from <strong>15.4%</strong> to <strong>19.5%</strong>.</li>
+            <li>At inference time on 15K Terminal-Lego instances, the modified prompt improves Claude Opus 4.6 pass rate from <strong>88.7%</strong> to <strong>95.4%</strong>, showing gains in both training trajectory quality and teacher task-solving performance.</li>
+          </ul>
+        </div>
+        <div class="box" style="background-color: #fffdf5; border-left: 4px solid #d4a017; margin-top: 0.5rem;">
+          <p class="is-size-6" style="margin-bottom: 0.5rem;"><strong><span class="icon is-small" style="margin-right: 0.25rem; color: #d4a017;"><i class="fas fa-lightbulb"></i></span>Takeaways</strong></p>
+          <ol class="is-size-7" style="margin-left: 1.1rem;">
+            <li>A teacher's raw capability does not directly determine teaching quality; trajectory length and error-recovery loops are not decisive factors either.</li>
+            <li>EGS captures a fundamental reasoning behavior that students must acquire to act reliably, benefiting both inference and training.</li>
+            <li>Students can learn useful behavioral patterns from high targeted observation ratio trajectories even when those trajectories fail the task, decoupling process quality from outcome.</li>
+          </ol>
         </div>
       </div>
     </div>
@@ -240,14 +267,30 @@
         <h2 class="title is-3 has-text-centered"><strong>Terminal-Lego Pipeline</strong></h2>
         <div class="content has-text-justified">
           <p>
-            Terminal-Lego converts real StackOverflow issues into Docker-verified agentic terminal tasks through three stages: source collection, cascaded LLM task construction, and Docker round-trip verification.
+            Terminal-Lego converts real StackOverflow issues into Docker-verified agentic terminal tasks through three main stages, with an iterative validation sub-loop inside Stage 2.
           </p>
         </div>
         <figure class="image">
           <img src="./static/figures/pipeline-1.png" alt="Terminal-Lego Pipeline">
         </figure>
+        <div class="box" style="background-color: #fffdf5; border-left: 4px solid #d4a017; margin-top: 1rem;">
+          <ul class="is-size-7" style="margin-left: 1.1rem; list-style: none;">
+            <li style="margin-bottom: 0.45rem;">
+              <strong>Stage 1 — Source Collection.</strong> We sample StackOverflow questions from 90+ domains, requiring accepted answers and vote-based quality filtering.
+            </li>
+            <li style="margin-bottom: 0.45rem;">
+              <strong>Stage 2 — Cascaded Task Construction.</strong> Each question is converted into a Terminal-Bench-style task through dependent generation of instruction, environment, solution, Dockerfile, and tests.
+              <div style="margin-top: 0.4rem; margin-left: 1rem;">
+                <strong>Stage 2.5 — Test Validation Loop.</strong> We first catch syntax errors, then use an independent LLM to review five common test failure modes. Failed reviews are fed back for regeneration for up to 3 rounds.
+              </div>
+            </li>
+            <li>
+              <strong>Stage 3 — Docker Round-Trip Verification.</strong> Each task must pass full containerized checks (build image, run solution, run tests), and we keep only tasks with positive post-solution reward.
+            </li>
+          </ul>
+        </div>
         <p class="is-italic has-text-grey is-size-7 has-text-centered" style="margin-top: 0.75rem;">
-          Pipeline overview: StackOverflow issues are filtered, converted through cascaded generation, and retained after Docker round-trip verification. The dataset spans 90+ technical domains with 15K+ verified tasks.
+          Pipeline overview: StackOverflow issues are filtered, converted through cascaded generation with test-validation feedback, and retained after Docker round-trip verification. The dataset spans 90+ technical domains with 15K+ verified tasks.
         </p>
       </div>
     </div>
@@ -264,7 +307,7 @@
         <div class="columns">
           <div class="column is-5">
             <figure class="image">
-              <img src="./static/figures/pie_chart.png" alt="Domain Distribution">
+              <img src="./static/figures/terminal_lego_source_domains_pie.png" alt="Domain Distribution">
             </figure>
           </div>
           <div class="column is-7">
@@ -342,11 +385,11 @@
               <tr><td>Qwen3-8B (backbone)</td><td class="has-text-centered">8B</td><td class="has-text-centered">--</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">2.5</td></tr>
               <tr><td>TerminalTraj-Qwen2.5-Coder-7B</td><td class="has-text-centered">7B</td><td class="has-text-centered">50.7K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">10.1</td></tr>
               <tr><td>Nemotron-Terminal-Qwen3-8B</td><td class="has-text-centered">8B</td><td class="has-text-centered">490.5K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered"><strong>13.0</strong></td></tr>
-              <tr style="background-color: #f0f7ff; font-weight: 600;"><td>Terminal-Lego-Qwen3-8B</td><td class="has-text-centered">8B</td><td class="has-text-centered">15.3K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">11.8 <span style="color:#3273dc;">(+9.3)</span></td></tr>
+              <tr style="background-color: #fff9e8; font-weight: 600;"><td>Terminal-Lego-Qwen3-8B</td><td class="has-text-centered">8B</td><td class="has-text-centered">15.3K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">11.8 <span style="color:#d4a017;">(+9.3)</span></td></tr>
               <tr><td>Qwen3-32B (backbone)</td><td class="has-text-centered">32B</td><td class="has-text-centered">--</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">3.4</td></tr>
               <tr><td>TerminalTraj-Qwen2.5-Coder-32B</td><td class="has-text-centered">32B</td><td class="has-text-centered">50.7K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">22.0</td></tr>
               <tr><td>Nemotron-Terminal-Qwen3-32B</td><td class="has-text-centered">32B</td><td class="has-text-centered">490.5K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered"><strong>27.4</strong></td></tr>
-              <tr style="background-color: #f0f7ff; font-weight: 600;"><td>Terminal-Lego-Qwen3-32B</td><td class="has-text-centered">32B</td><td class="has-text-centered">15.3K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">24.3 <span style="color:#3273dc;">(+20.9)</span></td></tr>
+              <tr style="background-color: #fff9e8; font-weight: 600;"><td>Terminal-Lego-Qwen3-32B</td><td class="has-text-centered">32B</td><td class="has-text-centered">15.3K</td><td class="has-text-centered">Terminus-2</td><td class="has-text-centered">24.3 <span style="color:#d4a017;">(+20.9)</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -362,13 +405,13 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3 has-text-centered"><strong>Key Takeaways</strong></h2>
         <div class="content">
-          <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+          <div class="box" style="background-color: #fff9e8; border-left: 4px solid #d4a017;">
             <p><strong>Prioritize Paradigm over Performance</strong> — When selecting teacher models for distillation, prioritize those with rigorous inspect-act-verify habits (high TOR) rather than those with the highest benchmark scores.</p>
           </div>
-          <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+          <div class="box" style="background-color: #fff9e8; border-left: 4px solid #d4a017;">
             <p><strong>Observation as the Core Reasoning Primitive</strong> — Environment-grounded observation is not merely a safety check, but the fundamental bridge between perception and action that students must learn.</p>
           </div>
-          <div class="box" style="background-color: #f0f7ff; border-left: 4px solid #3273dc;">
+          <div class="box" style="background-color: #fff9e8; border-left: 4px solid #d4a017;">
             <p><strong>The Value of Methodological Failure</strong> — Sufficiently capable students can extract reusable interaction patterns from imperfect trajectories, decoupling process quality from outcome.</p>
           </div>
         </div>
@@ -380,7 +423,7 @@
 <!-- BibTeX -->
 <section class="section" id="BibTeX" style="background-color: #fafafa;">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3 has-text-centered"><strong>Citation</strong></h2>
+    <h2 class="title is-3 has-text-centered" style="color: #000;"><strong style="color: #000;">Citation</strong></h2>
     <pre><code>@article{anonymous2026terminallego,
   title={What Makes Interaction Trajectories Effective for Training Terminal Agents?},
   author={Anonymous},
