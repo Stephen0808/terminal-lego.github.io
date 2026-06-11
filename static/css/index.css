@@ -1,8 +1,17 @@
 /* SWE-Review Project Page Styles */
 /* Nerfies/SWE-Lego template style */
 
+html {
+  font-size: 18.75px; /* ~19% larger than Bulma default (16px) */
+}
+
 body {
   font-family: 'Noto Sans', sans-serif;
+}
+
+/* Keep only the main hero title at original size */
+h1.title.is-1.publication-title {
+  font-size: 2.56rem; /* 48px at 18.75px root, same as 3rem @ 16px */
 }
 
 :root {
@@ -137,8 +146,8 @@ figure.image img {
 
 /* Responsive */
 @media screen and (max-width: 768px) {
-  .title.is-1 {
-    font-size: 1.75rem;
+  h1.title.is-1.publication-title {
+    font-size: 1.493rem; /* 28px at 18.75px root, same as 1.75rem @ 16px */
   }
   .highlight-number {
     font-size: 1.5rem !important;
@@ -204,5 +213,39 @@ figure.image img {
 .tag.is-info.is-light {
   background-color: var(--theme-primary-soft) !important;
   color: #555555 !important;
+}
+
+/* EGS section — slightly larger card typography */
+#egs .columns .box > p:first-child {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+#egs .columns .box > p.is-size-7 {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+#egs .box > p.is-size-6 {
+  font-size: 1.05rem !important;
+}
+
+#egs .box > p.is-size-7,
+#egs .box ul.is-size-7,
+#egs .box ol.is-size-7 {
+  font-size: 0.9375rem !important;
+  line-height: 1.5;
+}
+
+/* Activating Observation Behavior — keep injected prompt at original size */
+#egs .box .box > p.is-size-7 {
+  font-size: 0.75rem !important;
+  line-height: 1.4;
+}
+
+/* Pipeline section — larger stage list */
+#pipeline .box ul.is-size-7 {
+  font-size: 0.9375rem !important;
+  line-height: 1.5;
 }
 
